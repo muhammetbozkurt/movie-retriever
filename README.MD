@@ -41,6 +41,11 @@ Sign can be confusing. It is used to determine how the given year compares with 
 
 # How to Use Rest Api
 
+### To run rest api
+```bash
+python3 rest.py
+```
+
 I developed rest api of movie retriever as a basic interface for python api. It basicly takes arguments from requests endpoint and pass it to "MovieRetriever.retrieve_movies".
 
 "db_path" must be in args. Other than that "rating", "genre", "year" and "sign" can be in endpoint.  

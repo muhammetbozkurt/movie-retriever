@@ -21,18 +21,3 @@ def init_db(con: sqlite3.Connection):
     init_query = get_ready_query()
     cur.executescript(init_query)
     con.commit()
-
-
-
-"""con = sqlite3.connect('/home/bzkrt/WS/pc/movie-service/test.db')
-
-cur = con.cursor()
-
-
-init_query = get_ready_query()
-
-print(init_query)
-
-cur.executescript(init_query)
-con.commit()
-con.close()"""

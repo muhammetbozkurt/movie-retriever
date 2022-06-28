@@ -87,7 +87,6 @@ def main(args):
     ingest_movies(con, args.data_path)
     ingest_ratings(con, args.data_path)
 
-
     con.close()
 
 
