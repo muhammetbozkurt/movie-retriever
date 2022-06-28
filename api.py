@@ -2,7 +2,7 @@ import sqlite3
 
 import pandas as pd
 
-from sql_cmds import DATE_AFTER, BEGIN, CONJ, MOVIES_GENRE_TABLE, MOVIES_FROM_RATING_SUB
+from sql_cmds import DATE_AFTER, BEGIN, CONJ, MOVIES_GENRE_SUB, MOVIES_FROM_RATING_SUB
 from sql_cmds import INSERT_SQL_TEMPLATE
 from sql_cmds import INSERT_SQL_TEMPLATE
 
@@ -26,11 +26,11 @@ class MovieRetriever():
                     begin=begin,
                     first_sub_name = begin_tuple[1],
                     first_sub_id = begin_tuple[2],
-                    sec_sub=MOVIES_GENRE_TABLE[0].format(genre=genre),
-                    sec_sub_name=MOVIES_GENRE_TABLE[1],
-                    sec_sub_id=MOVIES_GENRE_TABLE[2]
+                    sec_sub=MOVIES_GENRE_SUB[0].format(genre=genre),
+                    sec_sub_name=MOVIES_GENRE_SUB[1],
+                    sec_sub_id=MOVIES_GENRE_SUB[2]
                 )
-            begin_tuple = MOVIES_GENRE_TABLE
+            begin_tuple = MOVIES_GENRE_SUB
         
         if rating is not None:
             begin = CONJ.format(
