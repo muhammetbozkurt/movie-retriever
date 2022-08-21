@@ -1,3 +1,5 @@
+Dataset - https://files.grouplens.org/datasets/movielens/ml-20m.zip
+
 # How to Ingest Data
 
 Download and extract movielens data to folder containing ingest.py. 
@@ -43,7 +45,7 @@ Sign can be confusing. It is used to determine how the given year compares with 
 
 ### To run rest api
 ```bash
-python3 rest.py
+uvicorn rest:app --reload
 ```
 
 I developed rest api of movie retriever as a basic interface for python api. It basicly takes arguments from requests endpoint and pass it to "MovieRetriever.retrieve_movies".

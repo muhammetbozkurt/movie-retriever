@@ -7,6 +7,17 @@ from sql_cmds import INSERT_SQL_TEMPLATE
 from sql_cmds import INSERT_SQL_TEMPLATE
 
 class MovieRetriever():
+    def __init__(self, db_path) -> None:
+        self.db_path = db_path
+        self.db = self.connect2DB()
+
+    
+    def connect2DB(self):
+        return sqlite3.connect(self.db_path)
+
+    def __del__(self):
+        self.db.close()
+
     @staticmethod
     def query_builder(year: int = -9999, sign: str = '>', genre: str= None, rating: float= None) -> str:
         """automatically creates query respect to wanted limits. for instance if user wants to add genre limit than this method add
@@ -43,8 +54,7 @@ class MovieRetriever():
                 )
         return begin+';'
 
-    @staticmethod
-    def retrieve_movies(db_path:str, csv_path: str = None, year: int = -9999, sign: str = '>', genre: str = None, rating: float = None) -> pd.DataFrame:
+    async def retrieve_movies(self, csv_path: str = None, year: int = -9999, sign: str = '>', genre: str = None, rating: float = None) -> pd.DataFrame:
         """retrieve movie name respect to 
 
         Args:
@@ -58,16 +68,12 @@ class MovieRetriever():
         Returns:
             pd.DataFrame: retrieved movies from database
         """
-        con = sqlite3.connect(db_path)
         query = MovieRetriever.query_builder(int(year),sign, genre, rating)
 
-        res = pd.read_sql_query(query, con)
-        con.close()
+        res = pd.read_sql_query(query, self.db)
 
 
         if csv_path is not None:
             res.to_csv(csv_path)
 
         return res
-
-
