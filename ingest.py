@@ -4,8 +4,8 @@ import argparse
 import pandas as pd
 
 from functools import reduce
-from sql_cmds import INSERT_SQL_TEMPLATE
-from init import init_db
+from Queries import INSERT_SQL_TEMPLATE
+from init.init import init_db
 
 
 def make_it_beatiful_for_sql(name: str) -> str:
